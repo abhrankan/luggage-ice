@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why this site has no JavaScript — Luggage Ice</title>
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --border: #2a2a2a;
+            --text: #d0d0d0;
+            --text-dim: #666666;
+            --accent: #9ad1ff;
+            --code-bg: #0f0f0f;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Courier New', Courier, monospace;
+            line-height: 1.8;
+            padding: 40px 20px;
+            max-width: 760px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+            margin-bottom: 60px;
+        }
+        .logo {
+            font-size: 1.1rem;
+            font-weight: bold;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--text);
+            text-decoration: none;
+        }
+        nav a {
+            margin-left: 1.5rem;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+        nav a:hover { color: var(--accent); }
+        .essay-header { margin-bottom: 50px; }
+        .tag {
+            font-size: 0.72rem;
+            color: var(--text-dim);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+            display: block;
+        }
+        h1 {
+            font-size: 1.5rem;
+            font-weight: normal;
+            color: #ffffff;
+            letter-spacing: 1px;
+            line-height: 1.4;
+        }
+        .essay-body h2 {
+            font-size: 0.8rem;
+            font-weight: normal;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-top: 40px;
+            margin-bottom: 14px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 6px;
+        }
+        .essay-body p {
+            font-size: 0.92rem;
+            color: var(--text);
+            margin-bottom: 18px;
+        }
+        .essay-body p:last-child { margin-bottom: 0; }
+        code {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            padding: 2px 6px;
+            font-size: 0.85rem;
+            color: var(--accent);
+        }
+        .back {
+            display: inline-block;
+            margin-top: 60px;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+        .back:hover { color: var(--accent); }
+        footer {
+            margin-top: 80px;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="../index.html" class="logo">Luggage Ice</a>
+        <nav>
+            <a href="../index.html#services">Services</a>
+            <a href="../essays.html">Essays</a>
+            <a href="../index.html#faq">FAQ</a>
+            <a href="../index.html#contact">Contact</a>
+        </nav>
+    </header>
+
+    <div class="essay-header">
+        <span class="tag">Philosophy</span>
+        <h1>Why this site has no JavaScript</h1>
+    </div>
+
+    <div class="essay-body">
+
+        <p>The default assumption in web development today is that JavaScript is present, available, and necessary. This site rejects that assumption. Not as a technical constraint, but as a deliberate position.</p>
+
+        <h2>JavaScript is not neutral</h2>
+
+        <p>Every script that runs in a browser is code executing on someone else's machine without their full knowledge of what it does. On the clearnet this is normalized. On Tor, where people arrive specifically because they want less of that, it is a contradiction. A hidden service that loads JavaScript is asking its visitors to trust code they cannot easily inspect, running in an environment they are trying to protect.</p>
+
+        <p>The Tor Browser ships with JavaScript enabled by default for usability, but its highest security setting disables it entirely. A site that requires JavaScript excludes the most security-conscious visitors on the network — the ones with the most reason to be there.</p>
+
+        <h2>What JavaScript is usually solving</h2>
+
+        <p>Most JavaScript on informational sites solves problems that were introduced by other JavaScript. Frameworks that need hydration. Lazy loaders that compensate for oversized bundles. Analytics that justify their own existence. Strip those layers away and the underlying content rarely needed any of it.</p>
+
+        <p>Interactive accordions, responsive layouts, smooth navigation — all of these can be handled with <code>&lt;details&gt;</code>, CSS grid, and anchor links. The browser already knows how to do these things. JavaScript is often what gets in the way of letting it.</p>
+
+        <h2>The trust argument</h2>
+
+        <p>Removing JavaScript is also a statement about trust. A page with no scripts makes an implicit promise: what you see is what was written. There is no runtime deciding what to show you, no A/B test serving a different version, no fingerprinting script building a profile from your interaction patterns.</p>
+
+        <p>That promise is difficult to fake. You can verify it by viewing the source. On a network built around anonymity, verifiability is a form of respect.</p>
+
+        <h2>What is lost</h2>
+
+        <p>Interactivity that genuinely requires computation. Real-time updates. Complex UI state. These are real trade-offs, and for sites that need them, they are valid reasons to use JavaScript. This site does not need them. The decision to omit JavaScript here is not a universal prescription — it is an honest match between the tool and the task.</p>
+
+    </div>
+
+    <a class="back" href="../essays.html">← Back to essays</a>
+
+    <footer>
+        Accessible via the Tor Network.
+    </footer>
+
+</body>
+</html>
+

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tor vs clearnet: what changes, what doesn't — Luggage Ice</title>
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --border: #2a2a2a;
+            --text: #d0d0d0;
+            --text-dim: #666666;
+            --accent: #9ad1ff;
+            --code-bg: #0f0f0f;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Courier New', Courier, monospace;
+            line-height: 1.8;
+            padding: 40px 20px;
+            max-width: 760px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+            margin-bottom: 60px;
+        }
+        .logo {
+            font-size: 1.1rem;
+            font-weight: bold;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--text);
+            text-decoration: none;
+        }
+        nav a {
+            margin-left: 1.5rem;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+        nav a:hover { color: var(--accent); }
+        .essay-header { margin-bottom: 50px; }
+        .tag {
+            font-size: 0.72rem;
+            color: var(--text-dim);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+            display: block;
+        }
+        h1 {
+            font-size: 1.5rem;
+            font-weight: normal;
+            color: #ffffff;
+            letter-spacing: 1px;
+            line-height: 1.4;
+        }
+        .essay-body h2 {
+            font-size: 0.8rem;
+            font-weight: normal;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-top: 40px;
+            margin-bottom: 14px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 6px;
+        }
+        .essay-body p {
+            font-size: 0.92rem;
+            color: var(--text);
+            margin-bottom: 18px;
+        }
+        .essay-body p:last-child { margin-bottom: 0; }
+        code {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            padding: 2px 6px;
+            font-size: 0.85rem;
+            color: var(--accent);
+        }
+        .back {
+            display: inline-block;
+            margin-top: 60px;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+        .back:hover { color: var(--accent); }
+        footer {
+            margin-top: 80px;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="../index.html" class="logo">Luggage Ice</a>
+        <nav>
+            <a href="../index.html#services">Services</a>
+            <a href="../essays.html">Essays</a>
+            <a href="../index.html#faq">FAQ</a>
+            <a href="../index.html#contact">Contact</a>
+        </nav>
+    </header>
+
+    <div class="essay-header">
+        <span class="tag">Tor</span>
+        <h1>Tor vs clearnet: what changes, what doesn't</h1>
+    </div>
+
+    <div class="essay-body">
+
+        <p>Running a site on Tor instead of the clearnet changes some things substantially and leaves others exactly the same. The distinction matters because it is easy to overestimate what Tor provides and equally easy to underestimate what remains your responsibility.</p>
+
+        <h2>What Tor actually does</h2>
+
+        <p>Tor hides the network location of both the server and the visitor. A clearnet server has an IP address that can be traced to a hosting provider, a jurisdiction, and often a person or organization. A Tor hidden service has an onion address derived from a cryptographic key pair. The address reveals nothing about where the server is physically located or who controls it.</p>
+
+        <p>For visitors, Tor anonymizes their origin. Their ISP sees that they are using Tor but cannot see which sites they visit. The site they visit sees a Tor exit node or, in the case of a hidden service, no exit node at all — the connection stays entirely within the Tor network.</p>
+
+        <h2>What Tor does not do</h2>
+
+        <p>Tor does not protect against mistakes made at the application layer. A hidden service that logs user-agents, serves personalized content, or loads external resources can still correlate visitors through those mechanisms. Tor provides network anonymity. It does not compensate for a site that actively undermines it.</p>
+
+        <p>Tor does not protect the content of the site itself. If the files served contain identifying information — an author's writing style, specific details known only to a small group, metadata embedded in images — that information is still present regardless of the transport layer.</p>
+
+        <p>Tor does not guarantee uptime or discoverability. Onion addresses are not indexed by search engines. There is no DNS propagation to manage, but there is also no infrastructure to help people find a service they do not already know the address of. Distribution of the address is entirely the operator's responsibility.</p>
+
+        <h2>What stays the same</h2>
+
+        <p>The web stack. HTML, CSS, HTTP — these work identically over Tor. A static site built for the clearnet can be served as a hidden service with no modifications to the files themselves. The server configuration changes; the content does not.</p>
+
+        <p>Security hygiene at the application level. Keeping software updated, using strong keys, not logging unnecessary data — these remain as important on Tor as anywhere else, arguably more so, because the operator has chosen to reduce their exposure to legal and administrative remediation in the event of a compromise.</p>
+
+        <h2>The honest summary</h2>
+
+        <p>Tor shifts where anonymity is enforced from the application to the network layer. That is a significant shift. But it is not a complete solution. A site on Tor that is carelessly built can still leak information about its operator and its visitors. Tor is a strong tool used in combination with careful design — not a substitute for it.</p>
+
+    </div>
+
+    <a class="back" href="../essays.html">← Back to essays</a>
+
+    <footer>
+        Accessible via the Tor Network.
+    </footer>
+
+</body>
+</html>
+

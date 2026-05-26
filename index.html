@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luggage Ice — Simple, Fast, Secure</title>
+    <style>
+        :root {
+            --bg:       #0a0a0a;
+            --bg-card:  #111111;
+            --border:   #2a2a2a;
+            --text:     #d0d0d0;
+            --text-dim: #666666;
+            --accent:   #9ad1ff;
+            --code-bg:  #0f0f0f;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Courier New', Courier, monospace;
+            line-height: 1.7;
+            padding: 40px 20px;
+            max-width: 760px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+            margin-bottom: 60px;
+        }
+
+        .logo {
+            font-size: 1.1rem;
+            font-weight: bold;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        nav a {
+            margin-left: 1.5rem;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        nav a:hover { color: var(--accent); }
+
+        .hero { margin-bottom: 60px; }
+
+        .hero h1 {
+            font-size: 1.6rem;
+            font-weight: normal;
+            letter-spacing: 2px;
+            line-height: 1.4;
+            margin-bottom: 16px;
+            color: #ffffff;
+        }
+
+        .hero p {
+            color: var(--text-dim);
+            max-width: 560px;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            margin-top: 8px;
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 2px;
+        }
+
+        .hero-cta:hover { border-color: var(--accent); }
+
+        h2 {
+            font-size: 0.85rem;
+            font-weight: normal;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 8px;
+            margin-bottom: 24px;
+        }
+
+        section { margin-bottom: 60px; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1px;
+            border: 1px solid var(--border);
+        }
+
+        .card { background: var(--bg-card); padding: 24px; }
+
+        .card h3 {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-bottom: 10px;
+            font-weight: normal;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Essays list */
+        .essay-list { list-style: none; }
+
+        .essay-list li {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .essay-list li:first-child {
+            border-top: 1px solid var(--border);
+        }
+
+        .essay-list a {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 14px 0;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .essay-list a:hover { color: var(--accent); }
+
+        .essay-list .tag {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            letter-spacing: 1px;
+        }
+
+        /* Accordion */
+        details { border-bottom: 1px solid var(--border); }
+        details:first-of-type { border-top: 1px solid var(--border); }
+
+        summary {
+            cursor: pointer;
+            padding: 14px 0;
+            font-size: 0.9rem;
+            color: var(--text);
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        summary::-webkit-details-marker { display: none; }
+        summary::after { content: '+'; color: var(--text-dim); font-size: 1.1rem; }
+        details[open] summary::after { content: '−'; }
+
+        .details-content { padding: 0 0 16px 0; }
+
+        .details-content p {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            line-height: 1.7;
+        }
+
+        .contact-link {
+            display: inline-block;
+            border: 1px solid var(--border);
+            color: var(--accent);
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+        }
+
+        .contact-link:hover { border-color: var(--accent); }
+
+        pre {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            padding: 16px;
+            font-size: 0.78rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            color: var(--text-dim);
+            margin-top: 12px;
+            line-height: 1.5;
+        }
+
+        footer {
+            margin-top: 80px;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">Luggage Ice</a>
+        <nav>
+            <a href="#services">Services</a>
+            <a href="essays.html">Essays</a>
+            <a href="#faq">FAQ</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <h1>Uncompromising Speed.<br>Minimalist Design.</h1>
+        <p>A technical blog about static web architecture, Tor hosting, operational security, and restraint-driven design philosophy.</p>
+        <p>No tracking. No JavaScript. No dynamic backend. Just pages.</p>
+        <a class="hero-cta" href="essays.html">Read the essays →</a>
+    </div>
+
+    <section id="services">
+        <h2>Services</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>01. Static Delivery</h3>
+                <p>Pre-rendered pages served straight from the edge network. Zero server lag.</p>
+            </div>
+            <div class="card">
+                <h3>02. Privacy First</h3>
+                <p>We do not track you, log you, or load cross-site resource assets.</p>
+            </div>
+            <div class="card">
+                <h3>03. Zero Attack Surface</h3>
+                <p>No databases or executable backend code means nothing for hackers to exploit.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="essays">
+        <h2>Recent Essays</h2>
+        <ul class="essay-list">
+            <li>
+                <a href="essays/static-tor-architecture.html">
+                    Static-only architecture on Tor
+                    <span class="tag">Architecture</span>
+                </a>
+            </li>
+            <li>
+                <a href="essays/no-js-philosophy.html">
+                    Why this site has no JavaScript
+                    <span class="tag">Philosophy</span>
+                </a>
+            </li>
+            <li>
+                <a href="essays/minimal-attack-surface.html">
+                    Minimal attack surface as a design principle
+                    <span class="tag">Security</span>
+                </a>
+            </li>
+            <li>
+                <a href="essays/tor-vs-clearnet.html">
+                    Tor vs clearnet: what changes, what doesn't
+                    <span class="tag">Tor</span>
+                </a>
+            </li>
+            <li>
+                <a href="essays/pgp-contact-culture.html">
+                    PGP and the culture of encrypted contact
+                    <span class="tag">Privacy</span>
+                </a>
+            </li>
+        </ul>
+    </section>
+
+    <section id="faq">
+        <h2>FAQ</h2>
+
+        <details>
+            <summary>How does this site work without JavaScript?</summary>
+            <div class="details-content">
+                <p>It relies entirely on semantic HTML5 structures and modern CSS grid properties to handle responsive layouts and native user interactions natively in-browser.</p>
+            </div>
+        </details>
+
+        <details>
+            <summary>Where is this website hosted?</summary>
+            <div class="details-content">
+                <p>This site is hosted as an isolated Tor hidden service. It consists entirely of flat, static files with no dynamic backend.</p>
+            </div>
+        </details>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <p style="font-size:0.9rem; margin-bottom:20px;">Secure communications via Proton Mail. Copy the address manually to protect context leakage over Tor:</p>
+
+        <a class="contact-link" href="mailto:abhrankan@proton.me">abhrankan@proton.me</a>
+
+        <details>
+            <summary>PGP Public Key</summary>
+            <div class="details-content">
+                <p>Verify identity or encrypt your message locally before routing through the mail provider.</p>
+                <pre>-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+xjMEaXm/NBYJKwYBBAHaRw8BAQdAHSqjfAJFMLhD9gNcbGTjXQyZOoqaAE3y
+VS5l1eTwc/rNKWFiaHJhbmthbkBwcm90b24ubWUgPGFiaHJhbmthbkBwcm90
+b24ubWU+wsARBBMWCgCDBYJpeb80AwsJBwkQ1q1WFN9y0cJFFAAAAAAAHAAg
+c2FsdEBub3RhdGlvbnMub3BlbnBncGpzLm9yZ3RKuNhL2Ccr+mhAIoWLjoy+
+T6qMRxAR9V0lrStmmR9+AxUKCAQWAAIBAhkBApsDAh4BFiEEGaYJL8rRMPmi
+6lSm1q1WFN9y0cIAACgrAP4sOAsYbK7fSbDgi9qR5oZ9WhXfjaJp9KJgNPkV
+YFQA6gD/VZIRI+tkihqvb9rcK7JzPffhljjEoU2cPwRNJM1IHQLOOARpeb80
+EgorBgEEAZdVAQUBAQdAS2FiqpPj6JG5PuG6j6xd9pfwwpkmZ6DOF5YaJ70/
+gn0DAQgHwr4EGBYKAHAFgml5vzQJENatVhTfctHCRRQAAAAAABwAIHNhbHRA
+bm90YXRpb25zLm9wZW5wZ3Bqcy5vcmdWYXXjJPOcP6Vs3E6q26KmbegZriXZ
+ERcC7HGGHo97uAKbDBYhBBmmCS/K0TD5oupUptatVhTfctHCAADYVwEAvZAw
+7fUdqSk8WEVP7/ANxi9cSzT+4cZMZStqi7P8W1kA/jxzhFQZfRdQugOKmWxX
+en/lebBReUyel1DVNiijmm0O
+=a9pl
+-----END PGP PUBLIC KEY BLOCK-----</pre>
+            </div>
+        </details>
+    </section>
+
+    <footer>
+        Accessible via the Tor Network.
+    </footer>
+
+</body>
+</html>

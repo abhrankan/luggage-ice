@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Static-only architecture on Tor — Luggage Ice</title>
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --border: #2a2a2a;
+            --text: #d0d0d0;
+            --text-dim: #666666;
+            --accent: #9ad1ff;
+            --code-bg: #0f0f0f;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Courier New', Courier, monospace;
+            line-height: 1.8;
+            padding: 40px 20px;
+            max-width: 760px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+            margin-bottom: 60px;
+        }
+
+        .logo {
+            font-size: 1.1rem;
+            font-weight: bold;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        nav a {
+            margin-left: 1.5rem;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        nav a:hover { color: var(--accent); }
+
+        .essay-header { margin-bottom: 50px; }
+
+        .tag {
+            font-size: 0.72rem;
+            color: var(--text-dim);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: normal;
+            color: #ffffff;
+            letter-spacing: 1px;
+            line-height: 1.4;
+        }
+
+        .essay-body h2 {
+            font-size: 0.8rem;
+            font-weight: normal;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-top: 40px;
+            margin-bottom: 14px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 6px;
+        }
+
+        .essay-body p {
+            font-size: 0.92rem;
+            color: var(--text);
+            margin-bottom: 18px;
+        }
+
+        .essay-body p:last-child { margin-bottom: 0; }
+
+        code {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            padding: 2px 6px;
+            font-size: 0.85rem;
+            color: var(--accent);
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 60px;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+
+        .back:hover { color: var(--accent); }
+
+        footer {
+            margin-top: 80px;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="../index.html" class="logo">Luggage Ice</a>
+        <nav>
+            <a href="../index.html#services">Services</a>
+            <a href="../essays.html">Essays</a>
+            <a href="../index.html#faq">FAQ</a>
+            <a href="../index.html#contact">Contact</a>
+        </nav>
+    </header>
+
+    <div class="essay-header">
+        <span class="tag">Architecture</span>
+        <h1>Static-only architecture on Tor</h1>
+    </div>
+
+    <div class="essay-body">
+
+        <p>Most Tor hidden services are overkill for what they actually do. They run application servers, database processes, and runtime environments to serve content that could have been written once and left alone. Static architecture is the correction to this habit.</p>
+
+        <h2>What static means here</h2>
+
+        <p>Static means the server does one thing: return files. There is no code executing at request time. No database query. No template rendering. The HTML that reaches the visitor was written before they arrived, not assembled for them on the fly.</p>
+
+        <p>On Tor, this distinction matters more than it does on the clearnet. Every additional process running on a hidden service is a process that could fail, leak, or be exploited. A static server has almost nothing to exploit.</p>
+
+        <h2>The stack</h2>
+
+        <p>A minimal static Tor setup looks like this: a <code>torrc</code> pointing a hidden service directory at a local port, and a lightweight HTTP server bound to that port serving flat files. The server could be nginx, caddy, or even Python's <code>http.server</code> for low-traffic use. Nothing else needs to run.</p>
+
+        <p>There is no database. There is no application runtime. There is no session store. There is no queue. The attack surface is the HTTP server itself, and that is a well-understood, well-audited piece of software.</p>
+
+        <h2>What you give up</h2>
+
+        <p>Dynamic content. User accounts. Search. Forms. Anything that requires computing a response on the server side is off the table. For most informational sites, this is not a loss. For any site that genuinely needs these things, static architecture is the wrong choice — but that conversation should happen explicitly, not by default.</p>
+
+        <h2>What you gain</h2>
+
+        <p>Reliability. Simplicity. An architecture you can fully understand and audit in an afternoon. A server that will still work correctly after months of neglect because there is nothing to drift, expire, or break. These are not small things on a network where most services disappear without explanation.</p>
+
+    </div>
+
+    <a class="back" href="../essays.html">← Back to essays</a>
+
+    <footer>
+        Accessible via the Tor Network.
+    </footer>
+
+</body>
+</html>

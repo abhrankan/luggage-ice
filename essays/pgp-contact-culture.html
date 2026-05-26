@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PGP and the culture of encrypted contact — Luggage Ice</title>
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --border: #2a2a2a;
+            --text: #d0d0d0;
+            --text-dim: #666666;
+            --accent: #9ad1ff;
+            --code-bg: #0f0f0f;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Courier New', Courier, monospace;
+            line-height: 1.8;
+            padding: 40px 20px;
+            max-width: 760px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+            margin-bottom: 60px;
+        }
+        .logo {
+            font-size: 1.1rem;
+            font-weight: bold;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--text);
+            text-decoration: none;
+        }
+        nav a {
+            margin-left: 1.5rem;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+        nav a:hover { color: var(--accent); }
+        .essay-header { margin-bottom: 50px; }
+        .tag {
+            font-size: 0.72rem;
+            color: var(--text-dim);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+            display: block;
+        }
+        h1 {
+            font-size: 1.5rem;
+            font-weight: normal;
+            color: #ffffff;
+            letter-spacing: 1px;
+            line-height: 1.4;
+        }
+        .essay-body h2 {
+            font-size: 0.8rem;
+            font-weight: normal;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-top: 40px;
+            margin-bottom: 14px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 6px;
+        }
+        .essay-body p {
+            font-size: 0.92rem;
+            color: var(--text);
+            margin-bottom: 18px;
+        }
+        .essay-body p:last-child { margin-bottom: 0; }
+        code {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            padding: 2px 6px;
+            font-size: 0.85rem;
+            color: var(--accent);
+        }
+        .back {
+            display: inline-block;
+            margin-top: 60px;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+        .back:hover { color: var(--accent); }
+        footer {
+            margin-top: 80px;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="../index.html" class="logo">Luggage Ice</a>
+        <nav>
+            <a href="../index.html#services">Services</a>
+            <a href="../essays.html">Essays</a>
+            <a href="../index.html#faq">FAQ</a>
+            <a href="../index.html#contact">Contact</a>
+        </nav>
+    </header>
+
+    <div class="essay-header">
+        <span class="tag">Privacy</span>
+        <h1>PGP and the culture of encrypted contact</h1>
+    </div>
+
+    <div class="essay-body">
+
+        <p>Publishing a PGP public key alongside a contact address is a small act with a specific meaning. It says: I have thought about how messages reach me, and I have made it possible for them to arrive without being readable by anyone in between. It is an invitation, but also a signal about what kind of communication is expected here.</p>
+
+        <h2>What PGP is</h2>
+
+        <p>PGP — Pretty Good Privacy — is a system for asymmetric encryption and digital signatures. You generate a key pair: a public key that anyone can use to encrypt a message to you, and a private key that only you hold, which can decrypt it. A message encrypted with your public key can only be read by whoever controls the corresponding private key. That is the core of it.</p>
+
+        <p>Signatures work in reverse. You sign a message with your private key, and anyone with your public key can verify that the signature is genuine. This is how identity is established in contexts where there is no central authority to vouch for anyone.</p>
+
+        <h2>Why it persists despite its inconvenience</h2>
+
+        <p>PGP has never been easy. Key management is manual. Trust chains require effort to establish. Most email clients handle it poorly. Easier alternatives — Signal, encrypted messaging apps, end-to-end encrypted email providers — exist and are genuinely better for most people in most situations.</p>
+
+        <p>PGP persists in certain contexts because it is decentralized and auditable in a way that app-based solutions are not. You do not need an account on any platform to use it. You do not need to trust a company's implementation or their server infrastructure. The mathematics is public, the tools are open source, and the keys are yours to hold independently of any service.</p>
+
+        <p>On Tor, where the operating assumption is distrust of centralized infrastructure, this matters. A contact method that depends on a company's servers sitting between sender and recipient introduces a dependency that Tor was partly designed to avoid.</p>
+
+        <h2>The filtering effect</h2>
+
+        <p>Requiring PGP encryption filters the messages that arrive. It does this in two ways. First, it excludes people who are not willing to spend fifteen minutes learning how to use it — which excludes most casual or accidental contact. Second, it signals to people who do use it that this is a context where operational discipline is valued.</p>
+
+        <p>This is not elitism. It is calibration. A contact channel optimized for volume and ease will receive messages calibrated for volume and ease. A contact channel that requires deliberate effort tends to receive deliberate messages. The friction is the feature.</p>
+
+        <h2>Publishing the key</h2>
+
+        <p>The public key on this site is published directly in the page rather than linked to a keyserver. Keyservers have their own trust assumptions and availability considerations. A key embedded in a static page on a hidden service is available exactly as long as the hidden service is available, and can be verified against the page itself. It does not require trusting any third-party infrastructure to retrieve it. That consistency — keeping the dependency chain short — is the same logic that runs through the rest of this site's design.</p>
+
+    </div>
+
+    <a class="back" href="../essays.html">← Back to essays</a>
+
+    <footer>
+        Accessible via the Tor Network.
+    </footer>
+
+</body>
+</html>
+

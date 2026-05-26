@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal attack surface as a design principle — Luggage Ice</title>
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --border: #2a2a2a;
+            --text: #d0d0d0;
+            --text-dim: #666666;
+            --accent: #9ad1ff;
+            --code-bg: #0f0f0f;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Courier New', Courier, monospace;
+            line-height: 1.8;
+            padding: 40px 20px;
+            max-width: 760px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+            margin-bottom: 60px;
+        }
+        .logo {
+            font-size: 1.1rem;
+            font-weight: bold;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--text);
+            text-decoration: none;
+        }
+        nav a {
+            margin-left: 1.5rem;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+        nav a:hover { color: var(--accent); }
+        .essay-header { margin-bottom: 50px; }
+        .tag {
+            font-size: 0.72rem;
+            color: var(--text-dim);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+            display: block;
+        }
+        h1 {
+            font-size: 1.5rem;
+            font-weight: normal;
+            color: #ffffff;
+            letter-spacing: 1px;
+            line-height: 1.4;
+        }
+        .essay-body h2 {
+            font-size: 0.8rem;
+            font-weight: normal;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-top: 40px;
+            margin-bottom: 14px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 6px;
+        }
+        .essay-body p {
+            font-size: 0.92rem;
+            color: var(--text);
+            margin-bottom: 18px;
+        }
+        .essay-body p:last-child { margin-bottom: 0; }
+        code {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            padding: 2px 6px;
+            font-size: 0.85rem;
+            color: var(--accent);
+        }
+        .back {
+            display: inline-block;
+            margin-top: 60px;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+        .back:hover { color: var(--accent); }
+        footer {
+            margin-top: 80px;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="../index.html" class="logo">Luggage Ice</a>
+        <nav>
+            <a href="../index.html#services">Services</a>
+            <a href="../essays.html">Essays</a>
+            <a href="../index.html#faq">FAQ</a>
+            <a href="../index.html#contact">Contact</a>
+        </nav>
+    </header>
+
+    <div class="essay-header">
+        <span class="tag">Security</span>
+        <h1>Minimal attack surface as a design principle</h1>
+    </div>
+
+    <div class="essay-body">
+
+        <p>Attack surface is the total set of points where an unauthorized party could attempt to enter or extract data from a system. In most web services, this surface is enormous and largely unexamined. Databases, API endpoints, authentication systems, third-party libraries, session tokens — each one is a door. Minimal attack surface design asks: which of these doors are actually necessary?</p>
+
+        <h2>The accumulation problem</h2>
+
+        <p>Software complexity tends to grow in one direction. Features are added. Dependencies are introduced. Each addition is individually justified. Over time the system becomes something nobody fully understands, with components interacting in ways that were never explicitly designed. Vulnerabilities live in those gaps — in the interaction between the authentication library and the session middleware, in the edge case the ORM handles differently across database versions.</p>
+
+        <p>The accumulation happens because adding is easier to justify than removing. Adding a feature delivers obvious value. Removing a dependency requires explaining what you are gaining by having less. Minimal attack surface design requires making that argument explicitly and repeatedly.</p>
+
+        <h2>What minimalism actually means in practice</h2>
+
+        <p>It means not running a database if the data can be stored in flat files. It means not using a framework if the task can be accomplished with standard library functions. It means not loading a third-party script if the functionality it provides is not essential. Each of these is a decision that reduces the number of things that can go wrong, and the number of things an attacker can reach.</p>
+
+        <p>On a static site, the attack surface collapses to the HTTP server and the files it serves. Both are well-understood. The server has no knowledge of users, no stored credentials, no executable logic to manipulate. There is nothing to inject into, nothing to escalate privileges through, nothing to exfiltrate beyond the files themselves — which are already public.</p>
+
+        <h2>The operational dimension</h2>
+
+        <p>Minimal attack surface is not only a security property. It is also an operational one. A system with fewer components is a system with fewer things to monitor, update, patch, and restart. On a Tor hidden service run by one person with no dedicated operations time, this matters. The system that requires the least ongoing maintenance is the one most likely to still be running correctly in six months.</p>
+
+        <p>Complexity has a carrying cost. Minimalism defers that cost indefinitely by not incurring it in the first place.</p>
+
+        <h2>Where it breaks down</h2>
+
+        <p>Minimal attack surface is not appropriate for every system. A service that genuinely needs user accounts, dynamic content, or real-time data cannot be reduced to static files without ceasing to be that service. The principle applies at the margin: given two approaches that achieve the same goal, prefer the one that introduces less complexity. That preference, applied consistently, compounds into a meaningfully more defensible system over time.</p>
+
+    </div>
+
+    <a class="back" href="../essays.html">← Back to essays</a>
+
+    <footer>
+        Accessible via the Tor Network.
+    </footer>
+
+</body>
+</html>
+

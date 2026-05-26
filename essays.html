@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Essays — Luggage Ice</title>
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --border: #2a2a2a;
+            --text: #d0d0d0;
+            --text-dim: #666666;
+            --accent: #9ad1ff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Courier New', Courier, monospace;
+            line-height: 1.7;
+            padding: 40px 20px;
+            max-width: 760px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+            margin-bottom: 60px;
+        }
+
+        .logo {
+            font-size: 1.1rem;
+            font-weight: bold;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        nav a {
+            margin-left: 1.5rem;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        nav a:hover { color: var(--accent); }
+
+        h1 {
+            font-size: 1.3rem;
+            font-weight: normal;
+            letter-spacing: 2px;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            font-size: 0.75rem;
+            font-weight: normal;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 8px;
+            margin-bottom: 0;
+            margin-top: 40px;
+        }
+
+        .essay-list { list-style: none; margin-bottom: 40px; }
+
+        .essay-list li { border-bottom: 1px solid var(--border); }
+
+        .essay-list a {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 16px 0;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.9rem;
+            gap: 20px;
+        }
+
+        .essay-list a:hover { color: var(--accent); }
+
+        .essay-meta {
+            display: flex;
+            gap: 16px;
+            flex-shrink: 0;
+        }
+
+        .tag {
+            font-size: 0.72rem;
+            color: var(--text-dim);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        footer {
+            margin-top: 80px;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">Luggage Ice</a>
+        <nav>
+            <a href="index.html#services">Services</a>
+            <a href="essays.html">Essays</a>
+            <a href="index.html#faq">FAQ</a>
+            <a href="index.html#contact">Contact</a>
+        </nav>
+    </header>
+
+    <h1>Essays</h1>
+    <p class="subtitle">Short technical writing on static architecture, Tor, security, and design restraint.</p>
+
+    <h2>Architecture</h2>
+    <ul class="essay-list">
+        <li>
+            <a href="essays/static-tor-architecture.html">
+                Static-only architecture on Tor
+                <span class="tag">Architecture</span>
+            </a>
+        </li>
+    </ul>
+
+    <h2>Philosophy</h2>
+    <ul class="essay-list">
+        <li>
+            <a href="essays/no-js-philosophy.html">
+                Why this site has no JavaScript
+                <span class="tag">Philosophy</span>
+            </a>
+        </li>
+    </ul>
+
+    <h2>Security</h2>
+    <ul class="essay-list">
+        <li>
+            <a href="essays/minimal-attack-surface.html">
+                Minimal attack surface as a design principle
+                <span class="tag">Security</span>
+            </a>
+        </li>
+    </ul>
+
+    <h2>Tor</h2>
+    <ul class="essay-list">
+        <li>
+            <a href="essays/tor-vs-clearnet.html">
+                Tor vs clearnet: what changes, what doesn't
+                <span class="tag">Tor</span>
+            </a>
+        </li>
+    </ul>
+
+    <h2>Privacy</h2>
+    <ul class="essay-list">
+        <li>
+            <a href="essays/pgp-contact-culture.html">
+                PGP and the culture of encrypted contact
+                <span class="tag">Privacy</span>
+            </a>
+        </li>
+    </ul>
+
+    <footer>
+        Accessible via the Tor Network.
+    </footer>
+
+</body>
+</html>
